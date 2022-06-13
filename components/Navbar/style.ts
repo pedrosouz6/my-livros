@@ -7,7 +7,7 @@ const {
     main
 } = Theme.light;
 
-export const Container = styled.div `
+export const ContainerNav = styled.div `
     width: 200px;
     height: 100vh;
     position: fixed;
@@ -22,13 +22,12 @@ export const Nav = styled.nav `
 
         display: flex;
         flex-direction: column;
-        gap: 1rem;
     }
 
     li a {
         display: block;
-        height: 40px;
-        line-height: 40px;
+        height: 45px;
+        line-height: 45px;
 
         padding: 0 10px;
         cursor: pointer;

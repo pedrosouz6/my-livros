@@ -1,9 +1,9 @@
-import { Container } from "./style";
+import { ContainerUser } from "./style";
 
 export function User() {
     return (
-        <Container>
+        <ContainerUser>
             <span>Pedro Souza</span>
-        </Container>
+        </ContainerUser>
     )
 }

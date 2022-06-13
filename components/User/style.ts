@@ -6,7 +6,7 @@ const {
 
 } = Theme.light;
 
-export const Container = styled.div `
+export const ContainerUser = styled.div `
     width: 100px;
 
     background-color: red;

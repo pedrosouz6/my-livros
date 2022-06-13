@@ -8,15 +8,6 @@ const {
     main
 } = Theme.light;
 
-export const Container = styled.div `
-    position: absolute;
-    top: 0;
-    width: calc(100% - 200px);
-    height: 110vh;
-    left: 200px;
-    padding: 20px 40px;
-`
-
 export const NameSession = styled.h4 `
     margin: 2rem 0 1rem 0;
 

@@ -7,7 +7,7 @@ const {
 } = Theme.light;
 
 
-export const Container = styled.div `
+export const ContainerSearch = styled.div `
     width: 100%;
     display: flex;
     gap: 1.5rem;

@@ -5,14 +5,14 @@ import { useRouter } from 'next/router';
 import { Title } from "../../styles/style";
 import { LinkA } from "../../styles/style";
 
-import { Container, Nav } from './style';
+import { ContainerNav, Nav } from './style';
 
 export function Navbar() {
 
     const { pathname } = useRouter();
 
     return (
-        <Container>
+        <ContainerNav>
             <div className="navbar-logo">
                 <Title>
                     Logo
@@ -24,14 +24,14 @@ export function Navbar() {
                     <li>
                         <Link href="/">
                             <LinkA className={pathname == '/' ? 'active' : ''}>
-                                meus livros
+                                My livros
                             </LinkA>
                         </Link>
                     </li>
                     <li>
-                        <Link href="/m">
-                            <LinkA>
-                                meus livros
+                        <Link href="/explorer">
+                            <LinkA className={pathname == '/explorer' ? 'active' : ''}>
+                                Explorar
                             </LinkA>
                         </Link>
                     </li>
@@ -45,6 +45,6 @@ export function Navbar() {
                     
                 </ul>
             </Nav>
-        </Container>
+        </ContainerNav>
     )
 }

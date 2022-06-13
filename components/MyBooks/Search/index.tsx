@@ -1,11 +1,11 @@
 import { User } from "../../User"
-import { Search, Container } from "./style"
+import { Search, ContainerSearch } from "./style"
 
 export function MyBooksSearch() {
     return (
-        <Container>
+        <ContainerSearch>
             <Search placeholder="Pesquisar meus livros" />
             <User />
-        </Container>
+        </ContainerSearch>
     )   
 }

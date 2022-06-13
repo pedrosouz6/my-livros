@@ -2,12 +2,13 @@ import { MyBooksSearch } from './Search';
 import { MyBooksSessionsFilter } from "./Sessions/Filter";
 
 import { 
-    Container, 
     NameSession, 
     CardsSessions, 
     Cards, 
     LineDashed 
 } from "./style";
+
+import { Container } from '../../styles/style';
 
 export function MyBook() {
     return (
