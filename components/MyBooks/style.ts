@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
-import { Theme } from "../../Theme";
+import { Theme } from "../../theme";
 
 const {
     white,
-    black
+    black,
+    main
 } = Theme.light;
 
 export const Container = styled.div `
@@ -33,13 +34,26 @@ export const LineDashed = styled.div `
     border: 1px dashed ${black};
     width: 100%;
     padding: 50px 20px;
+    border-radius: 3px;
 
     display: flex;
+    align-items: center;
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
 
     span {
         text-align: center;
+    }
+
+    button {
+        background-color: ${main};
+        color: ${white};
+
+        padding: 8px 15px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border-radius: 3px;
     }
 `
