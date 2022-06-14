@@ -5,7 +5,8 @@ import { Theme } from '../../../theme';
 const {
     black,
     white,
-    main
+    main,
+    beige
 } = Theme.light;
 
 export const ContainerModal = styled.div `
@@ -68,8 +69,17 @@ export const ChooseModal = styled.div `
         outline: none;
         border: none;
         cursor: pointer;
-        background: ${main};
 
         border-radius: 3px 3px 0 0;
     }
+
+    button.active {
+        background: ${main};
+        color: ${white};
+    }
+`
+
+export const TitleSection = styled.h4 `
+    padding-top: 1rem;
+    border-top: 1px solid ${beige};
 `

@@ -8,7 +8,7 @@ const {
 } = Theme.light;
 
 export const ContainerNav = styled.div `
-    width: 200px;
+    width: 230px;
     height: 100vh;
     position: fixed;
     top: 0;

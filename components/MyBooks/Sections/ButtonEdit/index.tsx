@@ -4,7 +4,7 @@ import { AiFillEdit } from 'react-icons/ai';
 import { MyBooksModal } from '../../Modal';
 import { Button } from "./style";
 
-export function MyBooksSessionsButtonEdit() {
+export function MyBooksSectionsButtonEdit() {
 
     const [ isMyBooksModal, setIsMyBooksModal ] = useState<boolean>(false);
 
@@ -22,7 +22,7 @@ export function MyBooksSessionsButtonEdit() {
             }
 
             <Button onClick={() => OpenMyBooksModal()}>
-                <span>Editar sessões <AiFillEdit /></span>
+                <span>Editar seções <AiFillEdit /></span>
             </Button>
         </>
     )

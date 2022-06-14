@@ -8,12 +8,12 @@ const {
     main
 } = Theme.light;
 
-export const NameSession = styled.h4 `
+export const NameSection = styled.h4 `
     margin: 2rem 0 1rem 0;
 
 `
 
-export const CardsSessions = styled.div `
+export const CardsSections = styled.div `
     display: flex;
     flex-direction: column;
 `

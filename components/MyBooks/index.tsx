@@ -1,9 +1,9 @@
 import { MyBooksSearch } from './Search';
-import { MyBooksSessionsFilter } from "./Sessions/Filter";
+import { MyBooksSectionsFilter } from "./Sections/Filter";
 
 import { 
-    NameSession, 
-    CardsSessions, 
+    NameSection, 
+    CardsSections, 
     Cards, 
     LineDashed 
 } from "./style";
@@ -14,33 +14,33 @@ export function MyBook() {
     return (
         <Container>
             <MyBooksSearch />
-            <MyBooksSessionsFilter />
+            <MyBooksSectionsFilter />
 
-            <CardsSessions>
+            <CardsSections>
                 <Cards>
-                    <NameSession>Lidos</NameSession>
+                    <NameSection>Lidos</NameSection>
                     <LineDashed>
-                        <span>Nenhum livro foi adicionado nessa sessão.</span>
+                        <span>Nenhum livro foi adicionado nessa seção.</span>
                         <button>Adicionar</button>
                     </LineDashed>
                 </Cards>
 
                 <Cards>
-                    <NameSession>Lendo</NameSession>
+                    <NameSection>Lendo</NameSection>
                     <LineDashed>
-                        <span>Nenhum livro foi adicionado nessa sessão.</span>
+                        <span>Nenhum livro foi adicionado nessa seção.</span>
                         <button>Adicionar</button>
                     </LineDashed>
                 </Cards>
 
                 <Cards>
-                    <NameSession>Parei</NameSession>
+                    <NameSection>Parei</NameSection>
                     <LineDashed>
-                        <span>Nenhum livro foi adicionado nessa sessão.</span>
+                        <span>Nenhum livro foi adicionado nessa seção.</span>
                         <button>Adicionar</button>
                     </LineDashed>
                 </Cards>
-            </CardsSessions>            
+            </CardsSections>            
         </Container>
     )
 }

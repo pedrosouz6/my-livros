@@ -1,14 +1,14 @@
-import { MyBooksSessionsButtonEdit } from '../ButtonEdit';
+import { MyBooksSectionsButtonEdit } from '../ButtonEdit';
 
 import { Container, Select } from "./style";
 
-export function MyBooksSessionsFilter() {
+export function MyBooksSectionsFilter() {
     return (
         <Container>
             <Select>
                 <option value="lidos">Lidos</option>
             </Select>
-            <MyBooksSessionsButtonEdit />
+            <MyBooksSectionsButtonEdit />
         </Container>
     )
 }
