@@ -1,10 +1,10 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { Explorer } from '../components/Explorer'
+import { Goals } from '../components/Goals'
 import { Navbar } from '../components/Navbar'
 
-const PageExplorer: NextPage = () => {
+const PageGoals: NextPage = () => {
   return (
     <div>
       <Head>
@@ -15,9 +15,9 @@ const PageExplorer: NextPage = () => {
       </Head>
 
       <Navbar />
-      <Explorer />
+      <Goals />
     </div>
   )
 }
 
-export default PageExplorer
+export default PageGoals

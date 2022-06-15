@@ -36,9 +36,9 @@ export function Navbar() {
                         </Link>
                     </li>
                     <li>
-                        <Link href="/b">
+                        <Link href="/goals">
                             <LinkA>
-                                meus livros
+                                Metas
                             </LinkA>
                         </Link>
                     </li>
