@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const Title = styled.h1 `
-    color: red;
+export const Title = styled.h2 `
+    font-size: 1.2rem;
 `
 
 export const LinkA = styled.a `

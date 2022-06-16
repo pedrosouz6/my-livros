@@ -1,11 +1,18 @@
 import Link from 'next/link';
 
 import { useRouter } from 'next/router';
+import Image from 'next/image';
+
+import Logo from '../../assets/LogoMyLivros.png';
 
 import { Title } from "../../styles/style";
 import { LinkA } from "../../styles/style";
 
-import { ContainerNav, Nav } from './style';
+import { 
+    ContainerNav, 
+    Nav ,
+    ImageLogo
+} from './style';
 
 export function Navbar() {
 
@@ -13,11 +20,9 @@ export function Navbar() {
 
     return (
         <ContainerNav>
-            <div className="navbar-logo">
-                <Title>
-                    Logo
-                </Title>
-            </div>
+            <ImageLogo>
+                <Image src={Logo} alt="Logo MyLivros" width='150px' height='60px' />
+            </ImageLogo>
 
             <Nav>
                 <ul>

@@ -16,7 +16,16 @@ export const ContainerNav = styled.div `
     background-color: ${beige};
 `
 
+export const ImageLogo = styled.div `
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+` 
+
 export const Nav = styled.nav `
+    margin-top: 2rem;
+
     ul {
         list-style: none;
 
@@ -29,7 +38,7 @@ export const Nav = styled.nav `
         height: 45px;
         line-height: 45px;
 
-        padding: 0 10px;
+        padding: 0 20px;
         cursor: pointer;
     }
 

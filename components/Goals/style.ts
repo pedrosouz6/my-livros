@@ -4,10 +4,15 @@ import { Theme } from '../../theme';
 
 const {
     main,
-    white
+    white,
+    beige
 } = Theme.light;
 
-export const Choose = styled.div `  
+export const Choose = styled.div `
+    border-bottom: 1px solid ${beige};
+
+    margin-bottom: 2rem;
+
     button {
         padding: 8px 15px;
         background: none;
