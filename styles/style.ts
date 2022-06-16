@@ -16,3 +16,9 @@ export const Container = styled.div `
     left: 230px;
     padding: 20px 40px;
 `
+
+export const ContainerCenter = styled.div `
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+`

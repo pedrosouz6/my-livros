@@ -48,11 +48,19 @@ export const HeaderModal = styled.header `
     button {
         background: none;
 
+        color: white;
+
         padding: 5px 2px 0 2px;
         border: none;
         outline: none;
         cursor: pointer;
         font-size: 1.2rem;
+    }
+
+    h3 {
+        color: white;
+        font-weight: 500;
+        letter-spacing: .3px;
     }
 `
 

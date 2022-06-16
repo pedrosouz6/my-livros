@@ -1,9 +1,11 @@
-import { Container } from "../../styles/style"
+import { Container, Title } from "../../styles/style";
+
+import { ExplorerSearch } from './Search';
 
 export function Explorer() {
     return (
         <Container>
-            <h1>explorer</h1>
+            <ExplorerSearch />
         </Container>
             
     )

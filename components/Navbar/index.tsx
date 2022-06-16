@@ -27,8 +27,8 @@ export function Navbar() {
             <Nav>
                 <ul>
                     <li>
-                        <Link href="/">
-                            <LinkA className={pathname == '/' ? 'active' : ''}>
+                        <Link href="/my-books">
+                            <LinkA className={pathname == '/my-books' ? 'active' : ''}>
                                 My livros
                             </LinkA>
                         </Link>
@@ -42,7 +42,7 @@ export function Navbar() {
                     </li>
                     <li>
                         <Link href="/goals">
-                            <LinkA>
+                            <LinkA className={pathname == '/goals' ? 'active' : ''}>
                                 Metas
                             </LinkA>
                         </Link>

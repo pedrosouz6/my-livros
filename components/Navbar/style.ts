@@ -44,5 +44,6 @@ export const Nav = styled.nav `
 
     li .active {
         background-color: ${main};
+        color: white;
     }
 `
