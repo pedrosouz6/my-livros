@@ -19,20 +19,7 @@ export const Container = styled.div `
     padding: 30px;
 `
 
-export const ContainerLogin = styled.div `
-    max-width: 410px;
-
-    flex: 1 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    flex-direction: column;
-
-
-`
-
-export const HeaderLogin = styled.div `
+export const HeaderRegister = styled.div `
     margin-bottom: 1rem;
     
     h3 {
@@ -56,7 +43,22 @@ export const HeaderLogin = styled.div `
     }
 `
 
-export const FormLogin = styled.form `
+export const ContainerRegister = styled.div `
+    max-width: 410px;
+
+    flex: 1 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: column;
+
+    h3 {
+        font-size: 1.5rem;
+    }
+`
+
+export const FormRegister = styled.form `
     flex: 1 1;
     display: flex;
     flex-direction: column;
@@ -83,7 +85,7 @@ export const FormLogin = styled.form `
         }
     }
 
-    #sendFormLogin {
+    #sendFormRegister {
         border: none;
         color: white;
         font-size: 11pt;
