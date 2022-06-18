@@ -10,6 +10,7 @@ import {
 } from "./style";
 
 import { ContainerCenter } from "../../../styles/style";
+import Link from "next/link";
 
 export function PublicWellcome() {
     return (
@@ -19,7 +20,9 @@ export function PublicWellcome() {
                     <LeftWellcome>
                         <TitleWellcome>Organize seus livros</TitleWellcome>
                         <p>O MyLivros irá te ajudar a organizar seus livros online de forma fácil e gratuita!</p>
-                        <button>Começar</button>
+                        <button>
+                            <Link href='/register'>Começar</Link>
+                        </button>
                     </LeftWellcome>
 
                     <RightWellcome>

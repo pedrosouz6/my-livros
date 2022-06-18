@@ -13,12 +13,24 @@ export const ContainerNav = styled.div `
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 3;
     background-color: ${beige};
+
+    @media (max-width: 900px) {
+        width: 100%;
+        height: 60px;
+
+        padding: 0 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: red;
+    }
 `
 
 export const ImageLogo = styled.div `
     margin-top: 20px;
-    width: 100%;
     display: flex;
     justify-content: center;
 ` 
@@ -45,5 +57,15 @@ export const Nav = styled.nav `
     li .active {
         background-color: ${main};
         color: white;
+    }
+
+    @media (max-width: 900px) {
+        margin-top: 0rem;
+        width: 200px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background-color: blue;
     }
 `

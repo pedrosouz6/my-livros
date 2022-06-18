@@ -33,13 +33,18 @@ export const LeftWellcome = styled.div `
     gap: 2rem;
 
     button {
-        padding: 10px 40px;
         border-radius: 25px;
         border: none;
         outline: none;
         background-color: ${main};
-        color: white;
         cursor: pointer;
+
+        a {
+            display: block;
+            padding: 10px 40px;
+            color: white;
+            text-decoration: none;
+        }
     }
 
     p {

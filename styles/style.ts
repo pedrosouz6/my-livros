@@ -15,6 +15,13 @@ export const Container = styled.div `
     height: auto;
     left: 230px;
     padding: 20px 40px;
+    z-index: 2;
+
+    @media (max-width: 900px) {
+        width: 100%;
+        left: 0;
+        top: 60px;
+    }
 `
 
 export const ContainerCenter = styled.div `
