@@ -23,18 +23,26 @@ export const ContainerHeader = styled.div `
         list-style: none;
 
         display: flex;
-        gap: 1.5rem;
+        gap: 1rem;
     }
+`
 
-    nav ul li a {
+export const ButtonLogin = styled.button `
+    background: none;
+    border: none;
+    outline: none;
+
+    a {
+        color: ${main};
+        font-weight: 500;
         display: block;
-        padding: 10px 25px;
-
-        color: white;
-        background-color: ${main};
+        padding: 6px 18px;
 
         border-radius: 25px;
         cursor: pointer;
+        border: 2px solid ${main};
+        text-decoration: none;
+
 
         transition: ${transition};
 
@@ -43,3 +51,31 @@ export const ContainerHeader = styled.div `
         }
     }
 `
+
+export const ButtonRegister = styled.button `
+    background: none;
+    border: none;
+    outline: none;
+
+    a {
+        border: 2px solid ${main};
+        background-color: ${main};
+        color: white;
+        font-weight: 500;
+        display: block;
+
+        padding: 6px 18px;
+
+        border-radius: 25px;
+        cursor: pointer;
+        text-decoration: none;
+
+
+        transition: ${transition};
+
+        &:hover {
+            opacity: .9;
+        }
+    }
+`
+

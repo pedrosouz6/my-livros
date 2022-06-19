@@ -4,7 +4,12 @@ import ImageLogo from '../../../assets/LogoMyLivros.png';
 import { LinkA } from "../../../styles/style";
 
 import { ContainerCenter } from "../../../styles/style";
-import { ContainerHeader, Header } from "./style";
+import { 
+    ContainerHeader, 
+    Header,
+    ButtonLogin ,
+    ButtonRegister
+} from "./style";
 
 export function PublicHeader() {
     return (
@@ -18,14 +23,18 @@ export function PublicHeader() {
                     <nav>
                         <ul>
                             <li>
-                                <Link href='/login'>
-                                    <LinkA>Login</LinkA>
-                                </Link>
+                               <ButtonLogin>
+                                    <Link href='/login'>
+                                        Login
+                                    </Link>
+                               </ButtonLogin>
                             </li>
                             <li>
-                                <Link href='/register'>
-                                    <LinkA>Registrar</LinkA>
-                                </Link>
+                                <ButtonRegister>
+                                    <Link href='/register'>
+                                        Registrar
+                                    </Link>
+                                </ButtonRegister>
                             </li>
                         </ul>
                     </nav>
