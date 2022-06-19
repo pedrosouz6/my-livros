@@ -28,7 +28,7 @@ export const ContainerModal = styled.div `
 export const Modal = styled.div `
     flex: 1;
     max-width: 700px;
-    height: 90vh;
+    height: calc(90vh - 80px);
     background-color: ${white};
     border-radius: 3px;
 `

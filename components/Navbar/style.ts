@@ -4,8 +4,14 @@ import { Theme } from '../../theme';
 
 const {
     beige,
-    main
+    main,
+    transition
 } = Theme.light;
+
+interface PropsNav {
+    isMenuResponsive: string    
+}
+  
 
 export const ContainerNav = styled.div `
     width: 230px;
@@ -25,7 +31,6 @@ export const ContainerNav = styled.div `
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background-color: red;
     }
 `
 
@@ -33,9 +38,13 @@ export const ImageLogo = styled.div `
     margin-top: 20px;
     display: flex;
     justify-content: center;
+
+    @media (max-width: 900px) {
+        margin-top: 0;
+    }
 ` 
 
-export const Nav = styled.nav `
+export const Nav = styled.nav<PropsNav> `
     margin-top: 2rem;
 
     ul {
@@ -60,12 +69,31 @@ export const Nav = styled.nav `
     }
 
     @media (max-width: 900px) {
-        margin-top: 0rem;
-        width: 200px;
-        height: 100vh;
+        margin-top: 60px;
+        width: 270px;
+        height: calc(100vh - 60px);
         position: fixed;
         top: 0;
-        right: 0;
-        background-color: blue;
+        background-color: ${beige};
+        transition: ${transition};
+        right: ${(props) => props.isMenuResponsive};
+        
+    }
+`
+
+export const ButtonResponsive = styled.button `
+    padding-top: 3px;
+    background: none;
+    border: none;
+    font-size: 16pt;
+    cursor: pointer;
+
+    display: none;
+
+    @media (max-width: 900px) {
+        display: block;
+
+        position: relative;
+        z-index: 4;
     }
 `

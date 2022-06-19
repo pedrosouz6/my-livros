@@ -1,22 +1,27 @@
+import { useState } from 'react';
 import Link from 'next/link';
-
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 import Logo from '../../assets/LogoMyLivros.png';
+
+import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 
 import { Title } from "../../styles/style";
 import { LinkA } from "../../styles/style";
 
 import { 
     ContainerNav, 
-    Nav ,
-    ImageLogo
+    Nav,
+    ImageLogo,
+    ButtonResponsive
 } from './style';
 
 export function Navbar() {
 
     const { pathname } = useRouter();
+
+    const [ isMenuResponsive, setIsMenuResponsive ] = useState<boolean>(false);
 
     return (
         <ContainerNav>
@@ -24,7 +29,7 @@ export function Navbar() {
                 <Image src={Logo} alt="Logo MyLivros" width='150px' height='60px' />
             </ImageLogo>
 
-            <Nav>
+            <Nav isMenuResponsive={!isMenuResponsive ? '-270px' : '0px'}>
                 <ul>
                     <li>
                         <Link href="/my-books">
@@ -34,7 +39,7 @@ export function Navbar() {
                         </Link>
                     </li>
                     <li>
-                        <Link href="/explorer">
+                            <Link href="/explorer">
                             <LinkA className={pathname == '/explorer' ? 'active' : ''}>
                                 Explorar
                             </LinkA>
@@ -47,9 +52,16 @@ export function Navbar() {
                             </LinkA>
                         </Link>
                     </li>
-                    
                 </ul>
             </Nav>
+            <ButtonResponsive 
+            onClick={() => setIsMenuResponsive(!isMenuResponsive)}>
+                {
+                    !isMenuResponsive ? 
+                    <AiOutlineMenu /> :
+                    <AiOutlineClose />
+                }
+            </ButtonResponsive>
         </ContainerNav>
     )
 }
