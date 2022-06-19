@@ -1,15 +1,22 @@
 import styled from 'styled-components';
 
+import { Theme } from '../../../theme';
+
+const {
+    beige,
+    transition
+} = Theme.light;
+
 export const InputSearch = styled.input `
     width: 100%;
     height: 40px;
 
     padding: 0 10px;
     border-radius: 3px;
-    border: 1px solid #D9D9D9;
+    border: 1px solid ${beige};
     outline: none;
 
-    transition: .3s ease-in-out;
+    transition: ${transition};
 
     &:focus,
     &:hover {
