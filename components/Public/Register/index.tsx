@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { FormEvent, useState } from 'react';
 import Image from 'next/image';
 
+import { instance } from '../../../config/axios';
+
 import { 
     Container,
     ContainerRegister,
@@ -13,7 +15,10 @@ import LogoMyLivros from '../../../assets/LogoMyLivros.png';
 
 export function PublicRegister() {
 
+
+    const [ name, setName ] = useState<string | null>(null);
     const [ email, setEmail ] = useState<string | null>(null);
+    const [ password, setPassword ] = useState<string | null>(null);
 
     function CreateAccount(e: FormEvent) {
         e.preventDefault();
@@ -21,9 +26,16 @@ export function PublicRegister() {
         console.log(email);
         const validateEmail = /\S+@\S+\.\S+/;
 
-        const vEmail = validateEmail.test(email!);
-
-        console.log(vEmail);
+        if(validateEmail.test(email!)) {
+            instance.post('/register', {
+                
+                name,
+                email,
+                password
+            })
+            .then(response => response.data)
+            .then(respost => console.log(respost))
+        }
     }
 
     return (
@@ -39,7 +51,11 @@ export function PublicRegister() {
                 <FormRegister
                 onSubmit={e => CreateAccount(e)}
                 >
-                    <input type='text' placeholder='Digite seu nome' />
+                    <input 
+                    type='text' 
+                    placeholder='Digite seu nome' 
+                    value={name!}
+                    onChange={e => setName(e.target.value)} />
 
                     <input 
                     type='text' 
@@ -47,7 +63,11 @@ export function PublicRegister() {
                     value={email!}
                     onChange={e => setEmail(e.target.value)} />
                     
-                    <input type='password' placeholder='Digite sua senha' />
+                    <input
+                    type='password'
+                    placeholder='Digite sua senha'
+                    value={password!}
+                    onChange={e => setPassword(e.target.value)} />
                     
                     <input id='sendFormRegister' type='submit' value='Criar conta' />
                 </FormRegister>
