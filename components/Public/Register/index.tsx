@@ -4,11 +4,15 @@ import Image from 'next/image';
 
 import { instance } from '../../../config/axios';
 
+import { IndicateError } from './IndicateError';
+
 import { 
     Container,
     ContainerRegister,
     FormRegister,
-    HeaderRegister
+    HeaderRegister,
+    MessageErrorEmail,
+    ContainerInputs
 } from './style';
 
 import LogoMyLivros from '../../../assets/LogoMyLivros.png';
@@ -16,27 +20,38 @@ import LogoMyLivros from '../../../assets/LogoMyLivros.png';
 export function PublicRegister() {
 
 
-    const [ name, setName ] = useState<string | null>(null);
-    const [ email, setEmail ] = useState<string | null>(null);
-    const [ password, setPassword ] = useState<string | null>(null);
+    const [ name, setName ] = useState<string>('');
+    const [ email, setEmail ] = useState<string>('');
+    const [ password, setPassword ] = useState<string>('');
+
+    const [ isInputEmpty, setIsInputEmpty ] = useState<boolean | null>(null);
+    const [ isEmailCorrect, setIsEmailCorrect ] = useState<boolean | null>(null);
 
     function CreateAccount(e: FormEvent) {
         e.preventDefault();
 
-        console.log(email);
         const validateEmail = /\S+@\S+\.\S+/;
 
-        if(validateEmail.test(email!)) {
-            instance.post('/register', {
-                
-                name,
-                email,
-                password
-            })
-            .then(response => response.data)
-            .then(respost => console.log(respost))
+        
+        if(name?.trim() === '' || email?.trim() === '' || password?.trim() === '') {
+            return setIsInputEmpty(true);
+            // instance.post('/register', {
+            //     name,
+            //     email,
+            //     password
+            // })
+            // .then(response => response.data)
+            // .then(respost => console.log(respost))
+        }
+
+        if(!validateEmail.test(email!)) {
+            setIsEmailCorrect(false);
+        } else {
+            setIsEmailCorrect(true);
         }
     }
+
+    console.log(isEmailCorrect)
 
     return (
         <Container>
@@ -51,24 +66,41 @@ export function PublicRegister() {
                 <FormRegister
                 onSubmit={e => CreateAccount(e)}
                 >
-                    <input 
-                    type='text' 
-                    placeholder='Digite seu nome' 
-                    value={name!}
-                    onChange={e => setName(e.target.value)} />
+                    <ContainerInputs>
+                        <input 
+                        type='text' 
+                        placeholder='Digite seu nome' 
+                        value={name!}
+                        onChange={e => setName(e.target.value)} />
+                    </ContainerInputs>
 
-                    <input 
-                    type='text' 
-                    placeholder='Digite seu email'
-                    value={email!}
-                    onChange={e => setEmail(e.target.value)} />
+                    <ContainerInputs>
+                        <input 
+                        type='text' 
+                        placeholder='Digite seu email'
+                        value={email!}
+                        onChange={e => setEmail(e.target.value)} />
+
+                        { 
+                            isEmailCorrect === false && 
+                            <IndicateError />
+                        }
+                    </ContainerInputs>
                     
-                    <input
-                    type='password'
-                    placeholder='Digite sua senha'
-                    value={password!}
-                    onChange={e => setPassword(e.target.value)} />
-                    
+                    <ContainerInputs>
+                        <input
+                        type='password'
+                        placeholder='Digite sua senha'
+                        value={password!}
+                        onChange={e => setPassword(e.target.value)} />
+
+                        {
+                            isInputEmpty === true &&
+                            <MessageErrorEmail>Preencha o(s) campo(s) acima</MessageErrorEmail>
+                        }
+
+                    </ContainerInputs>
+
                     <input id='sendFormRegister' type='submit' value='Criar conta' />
                 </FormRegister>
 

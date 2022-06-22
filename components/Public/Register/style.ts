@@ -70,10 +70,34 @@ export const FormRegister = styled.form `
     border-radius: 5px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, .1);
 
+    #sendFormRegister {
+        border: none;
+        color: white;
+        font-size: 11pt;
+        letter-spacing: .3px;
+        background-color: ${main};
+        border-radius: 5px;
+        height: 42px;
+        cursor: pointer;
+
+        &:hover {
+            opacity: .8;
+        }
+    }
+`
+
+export const MessageErrorEmail = styled.span `
+    text-align: center;
+`
+
+export const ContainerInputs = styled.div `
+    position: relative;
+    height: 42px;
+
     input {
         width: 100%;
-        height: 42px;
-        padding: 0 10px;
+        height: 100%;
+        padding: 0 30px 0 10px;
         border-radius: 5px;
         border: 1px solid ${beige};
         outline: none;
@@ -85,16 +109,4 @@ export const FormRegister = styled.form `
         }
     }
 
-    #sendFormRegister {
-        border: none;
-        color: white;
-        font-size: 11pt;
-        letter-spacing: .3px;
-        background-color: ${main};
-        cursor: pointer;
-
-        &:hover {
-            opacity: .8;
-        }
-    }
 `
