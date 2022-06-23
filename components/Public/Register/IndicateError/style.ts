@@ -20,19 +20,26 @@ export const ContainerIndicate = styled.div `
     }
 
     span {
-        text-align: center;
-        width: 130px;
         display: block;
+        width: 130px;
+
+        text-align: center;
+        font-size: 10pt;
+
         background-color: teal;
         color: white;
+        box-shadow: 1px 1px 5px rgba(255, 255, 255, .2);
+
         padding: 5px;
         border-radius: 5px;
+
         position: absolute;
         top: 25px;
         right: -3px;
 
         visibility: hidden;
         opacity: 0;
+
         transition: ${transition};
 
         i {

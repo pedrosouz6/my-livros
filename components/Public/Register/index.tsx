@@ -1,6 +1,9 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { FormEvent, useState } from 'react';
 import Image from 'next/image';
+
+import { AxiosResponse } from 'axios';
 
 import { instance } from '../../../config/axios';
 
@@ -17,8 +20,18 @@ import {
 
 import LogoMyLivros from '../../../assets/LogoMyLivros.png';
 
+interface RespostType {
+    error: boolean,
+    message: string
+}
+
+interface Respos {
+    data: RespostType
+}
+
 export function PublicRegister() {
 
+    const router = useRouter();
 
     const [ name, setName ] = useState<string>('');
     const [ email, setEmail ] = useState<string>('');
@@ -26,32 +39,45 @@ export function PublicRegister() {
 
     const [ isInputEmpty, setIsInputEmpty ] = useState<boolean | null>(null);
     const [ isEmailCorrect, setIsEmailCorrect ] = useState<boolean | null>(null);
+    const [ isPasswordCorrect, setIsPasswordCorrect ] = useState<boolean | null>(null);
 
     function CreateAccount(e: FormEvent) {
         e.preventDefault();
 
         const validateEmail = /\S+@\S+\.\S+/;
 
-        
         if(name?.trim() === '' || email?.trim() === '' || password?.trim() === '') {
             return setIsInputEmpty(true);
-            // instance.post('/register', {
-            //     name,
-            //     email,
-            //     password
-            // })
-            // .then(response => response.data)
-            // .then(respost => console.log(respost))
         }
+
+        setIsInputEmpty(false);
 
         if(!validateEmail.test(email!)) {
-            setIsEmailCorrect(false);
-        } else {
-            setIsEmailCorrect(true);
-        }
-    }
+           return setIsEmailCorrect(false);
+        } 
 
-    console.log(isEmailCorrect)
+        setIsEmailCorrect(true);
+        
+        if(!(password.length >= 5)) {
+            return setIsPasswordCorrect(false);
+        }
+
+        setIsPasswordCorrect(true);
+
+        return instance.post('/register', {
+            name,
+            email,
+            password
+        })
+        .then((response: AxiosResponse) => response.data)
+        .then((respost: RespostType) => {
+            if(respost) {
+                console.log('erro no bd')
+            }
+
+            return router.push('/my-books');
+        })
+    }
 
     return (
         <Container>
@@ -83,7 +109,7 @@ export function PublicRegister() {
 
                         { 
                             isEmailCorrect === false && 
-                            <IndicateError />
+                            <IndicateError text='O e-mail está incorreto' />
                         }
                     </ContainerInputs>
                     
@@ -94,12 +120,17 @@ export function PublicRegister() {
                         value={password!}
                         onChange={e => setPassword(e.target.value)} />
 
+                        {       
+                            isPasswordCorrect === false && 
+                            <IndicateError text='A senha deve ser maior que 5 caracteres' />
+                        }
+
+                    </ContainerInputs>
+
                         {
                             isInputEmpty === true &&
                             <MessageErrorEmail>Preencha o(s) campo(s) acima</MessageErrorEmail>
                         }
-
-                    </ContainerInputs>
 
                     <input id='sendFormRegister' type='submit' value='Criar conta' />
                 </FormRegister>
