@@ -41,6 +41,8 @@ export function PublicRegister() {
     const [ isEmailCorrect, setIsEmailCorrect ] = useState<boolean | null>(null);
     const [ isPasswordCorrect, setIsPasswordCorrect ] = useState<boolean | null>(null);
 
+    const [ teste, setTeste ] = useState<boolean | null>(null);
+
     function CreateAccount(e: FormEvent) {
         e.preventDefault();
 
@@ -71,8 +73,9 @@ export function PublicRegister() {
         })
         .then((response: AxiosResponse) => response.data)
         .then((respost: RespostType) => {
-            if(respost) {
+            if(respost.error) {
                 console.log('erro no bd')
+                setTeste(true);
             }
 
             return router.push('/my-books');
@@ -130,6 +133,11 @@ export function PublicRegister() {
                         {
                             isInputEmpty === true &&
                             <MessageErrorEmail>Preencha o(s) campo(s) acima</MessageErrorEmail>
+                        }
+
+{
+                            teste === true &&
+                            <MessageErrorEmail>banco de dados</MessageErrorEmail>
                         }
 
                     <input id='sendFormRegister' type='submit' value='Criar conta' />
