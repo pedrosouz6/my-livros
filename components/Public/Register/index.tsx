@@ -7,7 +7,7 @@ import { AxiosResponse } from 'axios';
 
 import { instance } from '../../../config/axios';
 
-import { IndicateError } from './IndicateError';
+import { IndicateError } from '../IndicateError';
 
 import { 
     Container,
@@ -25,10 +25,6 @@ interface RespostType {
     message: string
 }
 
-interface Respos {
-    data: RespostType
-}
-
 export function PublicRegister() {
 
     const router = useRouter();
@@ -40,8 +36,6 @@ export function PublicRegister() {
     const [ isInputEmpty, setIsInputEmpty ] = useState<boolean | null>(null);
     const [ isEmailCorrect, setIsEmailCorrect ] = useState<boolean | null>(null);
     const [ isPasswordCorrect, setIsPasswordCorrect ] = useState<boolean | null>(null);
-
-    const [ teste, setTeste ] = useState<boolean | null>(null);
 
     function CreateAccount(e: FormEvent) {
         e.preventDefault();
@@ -60,7 +54,7 @@ export function PublicRegister() {
 
         setIsEmailCorrect(true);
         
-        if(!(password.length >= 5)) {
+        if(!(password.length > 5)) {
             return setIsPasswordCorrect(false);
         }
 
@@ -75,7 +69,6 @@ export function PublicRegister() {
         .then((respost: RespostType) => {
             if(respost.error) {
                 console.log('erro no bd')
-                setTeste(true);
             }
 
             return router.push('/my-books');
@@ -123,7 +116,7 @@ export function PublicRegister() {
                         value={password!}
                         onChange={e => setPassword(e.target.value)} />
 
-                        {       
+                        {  
                             isPasswordCorrect === false && 
                             <IndicateError text='A senha deve ser maior que 5 caracteres' />
                         }
@@ -133,11 +126,6 @@ export function PublicRegister() {
                         {
                             isInputEmpty === true &&
                             <MessageErrorEmail>Preencha o(s) campo(s) acima</MessageErrorEmail>
-                        }
-
-{
-                            teste === true &&
-                            <MessageErrorEmail>banco de dados</MessageErrorEmail>
                         }
 
                     <input id='sendFormRegister' type='submit' value='Criar conta' />

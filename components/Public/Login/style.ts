@@ -96,3 +96,27 @@ export const FormLogin = styled.form `
         }
     }
 `
+
+export const ContainerInputs = styled.div `
+    position: relative;
+    height: 42px;
+
+    input {
+        width: 100%;
+        height: 100%;
+        padding: 0 30px 0 10px;
+        border-radius: 5px;
+        border: 1px solid ${beige};
+        outline: none;
+
+        transition: ${transition};
+
+        &:hover {
+            box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+        }
+    }
+`
+
+export const MessageEmpty = styled.div `
+    text-align: center;
+`
