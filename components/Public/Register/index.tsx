@@ -38,6 +38,7 @@ export function PublicRegister() {
     const [ isPasswordCorrect, setIsPasswordCorrect ] = useState<boolean | null>(null);
 
     function CreateAccount(e: FormEvent) {
+        console.log(process.env.NEXT_PUBLIC_DB_NAME)
         e.preventDefault();
 
         const validateEmail = /\S+@\S+\.\S+/;
