@@ -85,6 +85,8 @@ export const FormLogin = styled.form `
 
     #sendFormLogin {
         border: none;
+        height: 42px;
+        border-radius: 5px;
         color: white;
         font-size: 11pt;
         letter-spacing: .3px;
@@ -117,6 +119,6 @@ export const ContainerInputs = styled.div `
     }
 `
 
-export const MessageEmpty = styled.div `
+export const MessageError = styled.div `
     text-align: center;
 `

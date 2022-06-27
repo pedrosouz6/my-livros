@@ -1,5 +1,14 @@
+import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { AxiosResponse } from 'axios';
+import { useState, FormEvent } from 'react';
+
+import { instance } from '../../../config/axios';
+
+import LogoMyLivros from '../../../assets/LogoMyLivros.png';
+import { IndicateError } from '../IndicateError';
+import { Loading } from '../../Loading';
 
 import { 
     Container,
@@ -7,16 +16,9 @@ import {
     ContainerLogin,
     FormLogin,
     HeaderLogin,
-    MessageEmpty
+    MessageError
 } from './style';
 
-import { instance } from '../../../config/axios';
-
-import LogoMyLivros from '../../../assets/LogoMyLivros.png';
-import Link from 'next/link';
-import { useState, FormEvent } from 'react';
-import { AxiosResponse } from 'axios';
-import { IndicateError } from '../IndicateError';
 
 interface RespostType {
     error: boolean,
@@ -30,28 +32,38 @@ export function PublicLogin() {
     const [ email, setEmail ] = useState<string>('');
     const [ password, setPassword ] = useState<string>('');
 
-    const [ isInputEmpty, setIsInputEmpty ] = useState<boolean | null>(null);
+    const [ isErrorExist, setIsErrorExist ] = useState<boolean>(false);
+    const [ messageError, setMessageError ] = useState<string | null>(null);
+
     const [ isEmailCorrect, setIsEmailCorrect ] = useState<boolean | null>(null);
     const [ isPasswordCorrect, setIsPasswordCorrect ] = useState<boolean | null>(null);
+
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
 
     function Login(e: FormEvent) {
         e.preventDefault();
 
+        setIsLoading(true);
+
         const validateEmail = /\S+@\S+\.\S+/;
 
         if(email?.trim() === '' || password?.trim() === '') {
-            return setIsInputEmpty(true);
+            setIsLoading(false);
+            setIsErrorExist(true);
+            return setMessageError('Preencha o(s) campo(s) acima')
         }
 
-        setIsInputEmpty(false);
+        setIsErrorExist(false);
 
         if(!validateEmail.test(email!)) {
-           return setIsEmailCorrect(false);
+            setIsLoading(false);
+            return setIsEmailCorrect(false);
         } 
 
         setIsEmailCorrect(true);
         
         if(!(password.length > 5)) {
+            setIsLoading(false);
             return setIsPasswordCorrect(false);
         }
 
@@ -64,11 +76,14 @@ export function PublicLogin() {
         .then((response: AxiosResponse) => response.data)
         .then((respost: RespostType) => {
             if(respost.error) {
-                console.log('erro no bd')
+                setIsErrorExist(true);
+                setMessageError(respost.message);
+                setIsLoading(false);
             }
 
             if(!respost.error) {
-                return router.push('/my-books');
+                router.push('/my-books');
+                setIsLoading(false);
             }
         })
     }
@@ -112,11 +127,13 @@ export function PublicLogin() {
                     </ContainerInputs>
 
                     {
-                        isInputEmpty === true &&
-                        <MessageEmpty>Preencha o(s) campo(s) acima</MessageEmpty>
+                        isErrorExist === true &&
+                        <MessageError>{ messageError }</MessageError>
                     }
 
-                    <input id='sendFormLogin' type='submit' value='Entrar' />
+                    <button id='sendFormLogin' type='submit'>
+                        { isLoading ? <Loading /> : 'Entrar' }
+                    </button>
                 </FormLogin>
 
             </ContainerLogin>

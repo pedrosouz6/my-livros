@@ -14,11 +14,12 @@ import {
     ContainerRegister,
     FormRegister,
     HeaderRegister,
-    MessageErrorEmail,
+    MessageError,
     ContainerInputs
 } from './style';
 
 import LogoMyLivros from '../../../assets/LogoMyLivros.png';
+import { Loading } from '../../Loading';
 
 interface RespostType {
     error: boolean,
@@ -37,25 +38,34 @@ export function PublicRegister() {
     const [ isEmailCorrect, setIsEmailCorrect ] = useState<boolean | null>(null);
     const [ isPasswordCorrect, setIsPasswordCorrect ] = useState<boolean | null>(null);
 
+    const [ messageError, setMessageError ] = useState<string | null>(null);
+    const [ isErrorExist, setIsErrorExist ] = useState<boolean>(false);
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
+
     function CreateAccount(e: FormEvent) {
-        console.log(process.env.NEXT_PUBLIC_DB_NAME)
         e.preventDefault();
+        setIsLoading(true);
 
         const validateEmail = /\S+@\S+\.\S+/;
 
         if(name?.trim() === '' || email?.trim() === '' || password?.trim() === '') {
-            return setIsInputEmpty(true);
+            setMessageError('Preencha o(s) campo(s) acima');
+            setIsLoading(false);
+            return setIsErrorExist(true);
         }
 
+        setIsErrorExist(false);
         setIsInputEmpty(false);
 
         if(!validateEmail.test(email!)) {
-           return setIsEmailCorrect(false);
+            setIsLoading(false);
+            return setIsEmailCorrect(false);
         } 
 
         setIsEmailCorrect(true);
         
         if(!(password.length > 5)) {
+            setIsLoading(false);
             return setIsPasswordCorrect(false);
         }
 
@@ -69,10 +79,14 @@ export function PublicRegister() {
         .then((response: AxiosResponse) => response.data)
         .then((respost: RespostType) => {
             if(respost.error) {
-                console.log('erro no bd')
+                setMessageError('Erro no banco de dados ao cadastrar');
+                setIsErrorExist(true);
+                setIsLoading(false);
+            } else {
+                setIsErrorExist(false);
+                router.push('/my-books');
+                setIsLoading(false);
             }
-
-            return router.push('/my-books');
         })
     }
 
@@ -125,11 +139,15 @@ export function PublicRegister() {
                     </ContainerInputs>
 
                         {
-                            isInputEmpty === true &&
-                            <MessageErrorEmail>Preencha o(s) campo(s) acima</MessageErrorEmail>
+                            isErrorExist === true &&
+                            <MessageError>{ messageError }</MessageError>
                         }
 
-                    <input id='sendFormRegister' type='submit' value='Criar conta' />
+                    <button 
+                    id='sendFormRegister' 
+                    type='submit'>
+                        { isLoading ? <Loading /> : 'Criar conta' }
+                    </button>   
                 </FormRegister>
 
             </ContainerRegister>

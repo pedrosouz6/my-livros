@@ -20,7 +20,16 @@ export default (
                 return console.log(error);
             }
 
-            if(results) {
+            console.log(results);
+
+            if(results.length === 0) {
+                return res.send({   
+                    error: true,
+                    message: 'Usuário não existe no banco de dados'
+                })
+            }
+
+            if(results.length === 1) {
                 return res.send({   
                     error: false,
                     message: 'Usuário logado'

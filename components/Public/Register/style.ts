@@ -86,7 +86,7 @@ export const FormRegister = styled.form `
     }
 `
 
-export const MessageErrorEmail = styled.span `
+export const MessageError = styled.span `
     text-align: center;
 `
 
