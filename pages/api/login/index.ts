@@ -1,6 +1,9 @@
 import { NextApiResponse, NextApiRequest } from 'next';
 import { RowDataPacket } from 'mysql2';
 
+import jwt from 'jsonwebtoken';
+import { config } from '../../../config/jwt';
+
 import { connect } from '../../../connection';
 
 export default (
@@ -30,9 +33,13 @@ export default (
             }
 
             if(results.length === 1) {
+                console.log(results[0].id_user);
                 return res.send({   
                     error: false,
-                    message: 'Usuário logado'
+                    message: 'Usuário logado',
+                    // token: jwt.sign(
+                    //     {id: results.}
+                    // )
                 })
             }
         })

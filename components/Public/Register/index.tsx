@@ -83,6 +83,7 @@ export function PublicRegister() {
                 setIsErrorExist(true);
                 setIsLoading(false);
             } else {
+                
                 setIsErrorExist(false);
                 router.push('/my-books');
                 setIsLoading(false);

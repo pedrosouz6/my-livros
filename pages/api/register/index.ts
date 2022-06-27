@@ -1,6 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { RowDataPacket } from 'mysql2';
+import { OkPacket } from 'mysql2';
+import jwt from 'jsonwebtoken';
+
+import { config } from '../../../config/jwt';
 
 import { connect } from '../../../connection';
 
@@ -11,11 +14,8 @@ export default (
 
     const method = req.method;
 
-    console.log(method);
-
     if(method === 'POST') {
         const { name, email, password } = req.body;
-        console.log({ name, email, password });
         
         const sql = `
         INSERT INTO users (
@@ -28,11 +28,16 @@ export default (
             '${password}'
         )`;
 
-        connect.query(sql, (error, results: RowDataPacket[]) => {
+        connect.query(sql, (error, results: OkPacket) => {
             if(results) {
                 return res.send({
                     error: false,
-                    message: 'Usuário cadastrado'
+                    message: 'Usuário cadastrado',
+                    token: jwt.sign(
+                        {id: results.insertId},
+                        config.secret,
+                        {expiresIn: config.expireIn}
+                    )       
                 });
             }
     
