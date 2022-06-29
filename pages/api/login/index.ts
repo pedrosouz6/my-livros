@@ -33,13 +33,21 @@ export default (
             }
 
             if(results.length === 1) {
-                console.log(results[0].id_user);
                 return res.send({   
                     error: false,
                     message: 'Usuário logado',
-                    // token: jwt.sign(
-                    //     {id: results.}
-                    // )
+                    token: jwt.sign(
+                        {id: results[0].id_user},
+                        config.secret,
+                        {expiresIn: config.expireIn}
+                    )
+                })
+            }
+
+            if(results.length > 1) {
+                return res.send({   
+                    error: true,
+                    message: 'Mais de um usuário com esses dados',
                 })
             }
         })

@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { parseCookies } from 'nookies'
 
 import { Goals } from '../components/Goals'
 import { Navbar } from '../components/Navbar'
@@ -21,3 +22,22 @@ const PageGoals: NextPage = () => {
 }
 
 export default PageGoals
+
+
+export function getServerSideProps(ctx: any) {
+
+  const { ['token_user']: token } = parseCookies(ctx);
+
+  if(!token) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false
+      }
+    }
+  }
+
+  return {
+    props: {}
+  }
+}

@@ -10,6 +10,8 @@ import LogoMyLivros from '../../../assets/LogoMyLivros.png';
 import { IndicateError } from '../IndicateError';
 import { Loading } from '../../Loading';
 
+import { setCookie } from 'nookies';
+
 import { 
     Container,
     ContainerInputs,
@@ -22,7 +24,8 @@ import {
 
 interface RespostType {
     error: boolean,
-    message: string
+    message: string,
+    token: string
 }
 
 export function PublicLogin() {
@@ -82,9 +85,14 @@ export function PublicLogin() {
             }
 
             if(!respost.error) {
-                // router.push('/my-books');
+                setCookie(null, 'token_user', respost.token, {
+                    maxAge: 100 * 100 * 100
+                })
+                router.push('/my-books');
                 setIsLoading(false);
             }
+
+            setIsLoading(false)
         })
     }
 

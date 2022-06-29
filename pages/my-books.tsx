@@ -1,10 +1,19 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
-import { MyBook } from '../components/MyBooks'
+import { parseCookies } from 'nookies';
 
-import { Navbar } from '../components/Navbar'
+import { MyBook } from '../components/MyBooks';
+import { Navbar } from '../components/Navbar';
 
-const Home: NextPage = () => {
+import jwt from 'jsonwebtoken';
+
+import { config } from '../config/jwt';
+
+interface RespostType {
+  error: boolean,
+  message: string
+}
+
+export default function Home() {
   return (
     <div>
       <Head>
@@ -20,4 +29,21 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+
+export function getServerSideProps(ctx: any) {
+
+  const { ['token_user']: token } = parseCookies(ctx);
+
+  if(!token) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false
+      }
+    }
+  }
+
+  return {
+    props: {}
+  }
+}

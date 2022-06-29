@@ -18,12 +18,15 @@ import {
     ContainerInputs
 } from './style';
 
+import { setCookie } from 'nookies';
+
 import LogoMyLivros from '../../../assets/LogoMyLivros.png';
 import { Loading } from '../../Loading';
 
 interface RespostType {
     error: boolean,
-    message: string
+    message: string,
+    token: string
 }
 
 export function PublicRegister() {
@@ -34,7 +37,6 @@ export function PublicRegister() {
     const [ email, setEmail ] = useState<string>('');
     const [ password, setPassword ] = useState<string>('');
 
-    const [ isInputEmpty, setIsInputEmpty ] = useState<boolean | null>(null);
     const [ isEmailCorrect, setIsEmailCorrect ] = useState<boolean | null>(null);
     const [ isPasswordCorrect, setIsPasswordCorrect ] = useState<boolean | null>(null);
 
@@ -55,7 +57,6 @@ export function PublicRegister() {
         }
 
         setIsErrorExist(false);
-        setIsInputEmpty(false);
 
         if(!validateEmail.test(email!)) {
             setIsLoading(false);
@@ -83,7 +84,9 @@ export function PublicRegister() {
                 setIsErrorExist(true);
                 setIsLoading(false);
             } else {
-                
+                setCookie(null, 'token_user', respost.token, {
+                    maxAge: 100 * 100 * 100
+                })
                 setIsErrorExist(false);
                 router.push('/my-books');
                 setIsLoading(false);
