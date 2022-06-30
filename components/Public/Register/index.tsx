@@ -26,7 +26,10 @@ import { Loading } from '../../Loading';
 interface RespostType {
     error: boolean,
     message: string,
-    token: string
+    token: string,
+    user: {
+        name: string
+    }
 }
 
 export function PublicRegister() {
@@ -87,6 +90,11 @@ export function PublicRegister() {
                 setCookie(null, 'token_user', respost.token, {
                     maxAge: 100 * 100 * 100
                 })
+
+                setCookie(null, 'name_user', respost.user.name, {
+                    maxAge: 100 * 100 * 100
+                });
+                
                 setIsErrorExist(false);
                 router.push('/my-books');
                 setIsLoading(false);

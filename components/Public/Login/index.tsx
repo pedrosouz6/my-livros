@@ -25,7 +25,10 @@ import {
 interface RespostType {
     error: boolean,
     message: string,
-    token: string
+    token: string,
+    user: {
+        name: string
+    }
 }
 
 export function PublicLogin() {
@@ -87,7 +90,12 @@ export function PublicLogin() {
             if(!respost.error) {
                 setCookie(null, 'token_user', respost.token, {
                     maxAge: 100 * 100 * 100
-                })
+                });
+
+                setCookie(null, 'name_user', respost.user.name, {
+                    maxAge: 100 * 100 * 100
+                });
+                
                 router.push('/my-books');
                 setIsLoading(false);
             }

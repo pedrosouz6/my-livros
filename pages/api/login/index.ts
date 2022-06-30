@@ -36,6 +36,9 @@ export default (
                 return res.send({   
                     error: false,
                     message: 'Usuário logado',
+                    user: {
+                        name: results[0].name_user
+                    },
                     token: jwt.sign(
                         {id: results[0].id_user},
                         config.secret,

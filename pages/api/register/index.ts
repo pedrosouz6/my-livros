@@ -33,6 +33,9 @@ export default (
                 return res.send({
                     error: false,
                     message: 'Usuário cadastrado',
+                    user: {
+                        name
+                    },
                     token: jwt.sign(
                         {id: results.insertId},
                         config.secret,
