@@ -19,13 +19,13 @@ export const ContainerNav = styled.div `
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 3;
     background-color: ${beige};
 
     @media (max-width: 900px) {
         width: 100%;
         height: 60px;
 
+        z-index: 3;
         padding: 0 40px;
 
         display: flex;

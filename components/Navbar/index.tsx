@@ -7,7 +7,6 @@ import Logo from '../../assets/LogoMyLivros.png';
 
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 
-import { Title } from "../../styles/style";
 import { LinkA } from "../../styles/style";
 
 import { 
@@ -16,6 +15,8 @@ import {
     ImageLogo,
     ButtonResponsive
 } from './style';
+
+import { ButtonSignIn } from '../ButtonSignIn';
 
 export function Navbar() {
 
@@ -52,6 +53,8 @@ export function Navbar() {
                             </LinkA>
                         </Link>
                     </li>
+
+                    <ButtonSignIn text='Sair da conta' />
                 </ul>
             </Nav>
             <ButtonResponsive 
@@ -62,6 +65,7 @@ export function Navbar() {
                     <AiOutlineClose />
                 }
             </ButtonResponsive>
+
         </ContainerNav>
     )
 }
