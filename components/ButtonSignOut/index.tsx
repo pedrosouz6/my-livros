@@ -5,11 +5,11 @@ import { Button } from "./style";
 
 import { BsBoxArrowInLeft } from 'react-icons/bs';
 
-interface ButtonSignInProps {
+interface ButtonSignOutProps {
     text: string
 }
 
-export function ButtonSignIn({ text }: ButtonSignInProps) {
+export function ButtonSignOut({ text }: ButtonSignOutProps) {
 
     const router = useRouter();
     

@@ -16,7 +16,7 @@ import {
     ButtonResponsive
 } from './style';
 
-import { ButtonSignIn } from '../ButtonSignIn';
+import { ButtonSignOut } from '../ButtonSignOut';
 
 export function Navbar() {
 
@@ -54,7 +54,7 @@ export function Navbar() {
                         </Link>
                     </li>
 
-                    <ButtonSignIn text='Sair da conta' />
+                    <ButtonSignOut text='Sair da conta' />
                 </ul>
             </Nav>
             <ButtonResponsive 
