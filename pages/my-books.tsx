@@ -4,9 +4,9 @@ import { parseCookies } from 'nookies';
 import { MyBook } from '../components/MyBooks';
 import { Navbar } from '../components/Navbar';
 
-import jwt from 'jsonwebtoken';
 
 import { config } from '../config/jwt';
+import { verify } from 'jsonwebtoken';
 
 interface RespostType {
   error: boolean,
@@ -33,6 +33,20 @@ export default function Home() {
 export function getServerSideProps(ctx: any) {
 
   const { ['token_user']: token } = parseCookies(ctx);
+
+  if(token) {
+    try {
+      verify(token, config.secret);
+      
+    } catch(error) {
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false
+        }
+      }
+    }
+  }
 
   if(!token) {
     return {

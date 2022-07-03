@@ -9,6 +9,11 @@ import {
 import { TitleSection } from "../style";
 import { instance } from '../../../../config/axios';
 
+interface RespostTypes {
+    error: true,
+    message: string
+}
+
 export function MyBooksModalAddSections() {
 
     const [ nameSection, setNameSection ] = useState<string | null>(null);
@@ -19,6 +24,14 @@ export function MyBooksModalAddSections() {
         if(nameSection?.trim()) {
             return instance.post('/addSection', {
                 nameSection
+            })
+            .then(response => response.data)
+            .then((respost: RespostTypes) => {
+                if(respost.error) {
+                    return console.log(respost.message);
+                }
+
+                return console.log(respost.message);
             })
         }
 

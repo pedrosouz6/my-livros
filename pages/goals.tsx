@@ -1,6 +1,9 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { parseCookies } from 'nookies'
+import { verify } from 'jsonwebtoken';
+
+import { config } from '../config/jwt';
 
 import { Goals } from '../components/Goals'
 import { Navbar } from '../components/Navbar'
@@ -27,6 +30,20 @@ export default PageGoals
 export function getServerSideProps(ctx: any) {
 
   const { ['token_user']: token } = parseCookies(ctx);
+
+  if(token) {
+    try {
+      verify(token, config.secret);
+      
+    } catch(error) {
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false
+        }
+      }
+    }
+  }
 
   if(!token) {
     return {
