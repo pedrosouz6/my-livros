@@ -5,7 +5,11 @@ import Image from 'next/image';
 
 import Logo from '../../assets/LogoMyLivros.png';
 
-import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import { AiOutlineClose } from 'react-icons/ai';
+import { AiOutlineMenu } from 'react-icons/ai';
+import { BsBookHalf } from 'react-icons/bs';
+import { GiWorld } from 'react-icons/gi';
+import { GiStairsGoal } from 'react-icons/gi';
 
 import { LinkA } from "../../styles/style";
 
@@ -35,13 +39,15 @@ export function Navbar() {
                     <li>
                         <Link href="/my-books">
                             <LinkA className={pathname == '/my-books' ? 'active' : ''}>
+                                <i><BsBookHalf /></i>
                                 My livros
                             </LinkA>
                         </Link>
                     </li>
                     <li>
-                            <Link href="/explorer">
+                        <Link href="/explorer">
                             <LinkA className={pathname == '/explorer' ? 'active' : ''}>
+                                <i><GiWorld /></i>
                                 Explorar
                             </LinkA>
                         </Link>
@@ -49,6 +55,7 @@ export function Navbar() {
                     <li>
                         <Link href="/goals">
                             <LinkA className={pathname == '/goals' ? 'active' : ''}>
+                                <i><GiStairsGoal /></i>
                                 Metas
                             </LinkA>
                         </Link>

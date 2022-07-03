@@ -55,17 +55,38 @@ export const Nav = styled.nav<PropsNav> `
     }
 
     li a {
-        display: block;
+        display: flex;
+        gap: .7rem;
         height: 45px;
         line-height: 45px;
 
         padding: 0 20px;
         cursor: pointer;
+
+        i {
+            padding-top: 2px;
+            transform: translateX(-20px);
+            transition: ${transition};
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        &:hover i {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0px);
+        }
     }
 
     li .active {
         background-color: ${main};
         color: white;
+
+        i {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0px);
+        }
     }
 
     @media (max-width: 900px) {
