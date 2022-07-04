@@ -11,6 +11,7 @@ export default (
     req: NextApiRequest,
     res: NextApiResponse
 ) => {
+    console.log(req.headers);
     const tokenjwt = req.headers.authorization;
 
     if(tokenjwt) {

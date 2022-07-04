@@ -18,7 +18,8 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-icons": "^4.4.0",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "typescript-axios": "^1.0.0"
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^8.5.8",
