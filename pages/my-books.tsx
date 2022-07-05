@@ -1,19 +1,34 @@
 import Head from 'next/head'
 import { parseCookies } from 'nookies';
-
-import { MyBook } from '../components/MyBooks';
-import { Navbar } from '../components/Navbar';
-
-
-import { config } from '../config/jwt';
 import { verify } from 'jsonwebtoken';
+
+import { instance } from '../config/axios';
+import { config } from '../config/jwt';
+
+import { Navbar } from '../components/Navbar';
+import { MyBooksSectionsCards } from '../components/MyBooks/Sections/Cards';
+import { MyBooksSearch } from '../components/MyBooks/Search';
+import { MyBooksSectionsFilter } from '../components/MyBooks/Sections/Filter';
+import { MyBooksSectionsInitial } from '../components/MyBooks/Sections/Initial';
+
+import { Container } from '../styles/style';
 
 interface RespostType {
   error: boolean,
-  message: string
+  message: string,
+  results: []
 }
 
-export default function Home() {
+interface HomeProps {
+  datas: RespostType
+}
+
+interface ItemType {
+  name_section: string
+}
+
+export default function Home({ datas }: HomeProps) {
+
   return (
     <div>
       <Head>
@@ -24,20 +39,42 @@ export default function Home() {
       </Head>
 
       <Navbar />
-      <MyBook />
+
+      <Container>
+        <MyBooksSearch />
+        <MyBooksSectionsFilter />
+        
+        {
+          datas.results.map((item: ItemType, key) => (
+            <MyBooksSectionsCards keyId={key} title={item.name_section} />
+          ))
+        }
+
+        <MyBooksSectionsInitial />
+
+      </Container>
     </div>
   )
 }
 
 
-export function getServerSideProps(ctx: any) {
+export async function getServerSideProps(ctx: any) {
 
   const { ['token_user']: token } = parseCookies(ctx);
 
   if(token) {
     try {
       verify(token, config.secret);
+
+      const response = await instance.get('/getSection');
+      const respost: RespostType = await response.data;
       
+      return {
+        props: {
+          datas: respost
+        }
+      }
+
     } catch(error) {
       return {
         redirect: {

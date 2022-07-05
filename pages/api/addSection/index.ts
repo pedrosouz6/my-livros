@@ -50,7 +50,6 @@ export default (
                             message: 'Uma nova seção foi adicionada'
                         })
                     }
-
                 })
 
     
@@ -64,5 +63,10 @@ export default (
         } else {
             console.log('metodo errado');
         }
+    } else {
+        return res.send({
+            error: true,
+            message: 'Para adicionar uma nova seção, você precisar tem autorização'
+        })
     }
 }   
