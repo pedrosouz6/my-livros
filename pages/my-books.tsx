@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { parseCookies } from 'nookies';
-import { verify } from 'jsonwebtoken';
+import { JwtPayload, verify } from 'jsonwebtoken';
 
 import { instance } from '../config/axios';
 import { config } from '../config/jwt';
@@ -24,10 +24,13 @@ interface HomeProps {
 }
 
 interface ItemType {
-  name_section: string
+  name_section: string,
+  id_section: number
 }
 
 export default function Home({ datas }: HomeProps) {
+
+  console.log(datas.results.length)
 
   return (
     <div>
@@ -45,12 +48,14 @@ export default function Home({ datas }: HomeProps) {
         <MyBooksSectionsFilter />
         
         {
+          datas.results.length === 0 ? 
+
+          <MyBooksSectionsInitial /> :
+
           datas.results.map((item: ItemType, key) => (
-            <MyBooksSectionsCards keyId={key} title={item.name_section} />
+            <MyBooksSectionsCards keyId={key} datas={item} />
           ))
         }
-
-        <MyBooksSectionsInitial />
 
       </Container>
     </div>
@@ -64,9 +69,9 @@ export async function getServerSideProps(ctx: any) {
 
   if(token) {
     try {
-      verify(token, config.secret);
+      const { id } = verify(token, config.secret) as JwtPayload;
 
-      const response = await instance.get('/getSection');
+      const response = await instance.post('/getSection', { id_user: id });
       const respost: RespostType = await response.data;
       
       return {

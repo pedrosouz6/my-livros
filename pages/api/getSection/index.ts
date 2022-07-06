@@ -1,3 +1,4 @@
+import { RowDataPacket } from 'mysql2';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import { connect } from '../../../connection';
@@ -6,20 +7,28 @@ export default (
     req: NextApiRequest, 
     res: NextApiResponse
 ) => {
-    const sql = 'SELECT * FROM sections';
+    const method = req.method;
 
-    connect.query(sql, (error, results) => {
-        if(results) {
-            return res.send({
-                error: false,
-                message: 'Seções retornadas',
-                results
-            })
-        }
+    if(method === 'POST') {
+        const { id_user } = req.body;
+        const sql = `SELECT * FROM sections WHERE id_user = ${id_user}`;
+        
+        connect.query(sql, (error, results: RowDataPacket[]) => {
+            if(results.length >= 1) {
+                return res.send({
+                    error: false,
+                    message: 'Seções retornadas',
+                    results
+                })
+            }
 
-        return res.send({
-            error: true,
-            message: 'Erro ao buscar as seções'
+            if(results.length <= 0) {
+                return res.send({
+                    error: false,
+                    message: 'Esse usuário não tem nenhuma retornadas',
+                    results
+                })
+            }
         })
-    })
+    }
 } 

@@ -5,14 +5,16 @@ import {
 } from "./style";
 
 interface MyBooksSectionsCardsProps {
-    keyId: number,
-    title: string
+    datas: {
+        name_section: string
+    },
+    keyId: number
 }
 
-export function MyBooksSectionsCards({ title, keyId }: MyBooksSectionsCardsProps) {
+export function MyBooksSectionsCards({ datas, keyId }: MyBooksSectionsCardsProps) {
     return (
         <Cards key={keyId}>
-            <NameSection>{ title }</NameSection>
+            <NameSection>{ datas.name_section }</NameSection>
             <LineDashed>
                 <span>Nenhum livro foi adicionado nessa seção.</span>
                 <button>Adicionar</button>
