@@ -8,7 +8,11 @@ import {
     ContainerButtonSubmit
 } from './style';
 
-export function MyBooksSectionsInitial() {
+type MyBooksSectionsNoSectionProps = {
+    handleLoopNoSection: () => void
+}
+
+export function MyBooksSectionsInitial({ handleLoopNoSection }: MyBooksSectionsNoSectionProps) {
 
     const [ typeRadioButton, setTypeRadioButton ] = useState<string | null>(null);
 
@@ -32,7 +36,8 @@ export function MyBooksSectionsInitial() {
         }
 
         if(typeRadioButton === 'no-section') {
-            setCookie(null, 'no-section', true, {
+            handleLoopNoSection();
+            return setCookie(null, 'no-section', 'true', {
                 maxAge: 90 * 90 * 90
             })
         }

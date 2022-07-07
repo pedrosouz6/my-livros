@@ -12,7 +12,6 @@ export function MyBooksSectionsButtonEdit() {
         setIsMyBooksModal(true);
     }
 
-
     return (
         <>
             { 

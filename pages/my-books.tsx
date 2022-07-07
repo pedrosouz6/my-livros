@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Head from 'next/head'
 import { parseCookies } from 'nookies';
 import { JwtPayload, verify } from 'jsonwebtoken';
@@ -10,6 +11,7 @@ import { MyBooksSectionsCards } from '../components/MyBooks/Sections/Cards';
 import { MyBooksSearch } from '../components/MyBooks/Search';
 import { MyBooksSectionsFilter } from '../components/MyBooks/Sections/Filter';
 import { MyBooksSectionsInitial } from '../components/MyBooks/Sections/Initial';
+import { MyBooksSectionsNoSection } from '../components/MyBooks/Sections/NoSection';
 
 import { Container } from '../styles/style';
 
@@ -30,7 +32,24 @@ interface ItemType {
 
 export default function Home({ datas }: HomeProps) {
 
-  console.log(datas.results.length)
+  const [ isNoSection, setIsNoSection ] = useState(false);
+
+  const [ loopNoSection, setLoopNoSection ] = useState<boolean>(false);
+
+  useEffect(() => {
+    const { ['no-section']: noSection } = parseCookies(null);
+
+    if(noSection) {
+      return setIsNoSection(true);
+    }
+
+    return setIsNoSection(false);
+
+  }, [loopNoSection])
+
+  function handleLoopNoSection() {
+    setLoopNoSection(!loopNoSection);
+  }
 
   return (
     <div>
@@ -48,9 +67,12 @@ export default function Home({ datas }: HomeProps) {
         <MyBooksSectionsFilter />
         
         {
+          isNoSection ? 
+          <MyBooksSectionsNoSection handleLoopNoSection={handleLoopNoSection} /> :
+
           datas.results.length === 0 ? 
 
-          <MyBooksSectionsInitial /> :
+          <MyBooksSectionsInitial handleLoopNoSection={handleLoopNoSection} /> :
 
           datas.results.map((item: ItemType, key) => (
             <MyBooksSectionsCards keyId={key} datas={item} />
