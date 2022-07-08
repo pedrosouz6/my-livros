@@ -1,6 +1,8 @@
 import { FormEvent, useState } from 'react';
 import { setCookie } from 'nookies';
 
+import { useSections } from '../../../../hooks/Sections';
+
 import { 
     ContainerInitial,
     ContainerRadioButton,
@@ -8,11 +10,9 @@ import {
     ContainerButtonSubmit
 } from './style';
 
-type MyBooksSectionsNoSectionProps = {
-    handleLoopNoSection: () => void
-}
+export function MyBooksSectionsInitial() {
 
-export function MyBooksSectionsInitial({ handleLoopNoSection }: MyBooksSectionsNoSectionProps) {
+    const { handleLoopNoSection } = useSections();
 
     const [ typeRadioButton, setTypeRadioButton ] = useState<string | null>(null);
 

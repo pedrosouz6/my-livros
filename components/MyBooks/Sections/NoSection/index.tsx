@@ -2,11 +2,7 @@ import { destroyCookie } from "nookies";
 
 import { ContainerNoSection } from "./style";
 
-type MyBooksSectionsNoSectionProps = {
-    handleLoopNoSection: () => void
-}
-
-export function MyBooksSectionsNoSection({ handleLoopNoSection }: MyBooksSectionsNoSectionProps) {
+export function MyBooksSectionsNoSection() {
 
     // function backChooseSections() {
     //     destroyCookie(null, 'no-section');

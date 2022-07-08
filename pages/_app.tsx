@@ -1,13 +1,13 @@
 import type { AppProps } from 'next/app';
 import GlobalStyle from '../styles/globals';
 
-function MyApp({ Component, pageProps }: AppProps) {
+import ProviderSection from '../context/Sections';
+
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <ProviderSection>
       <Component {...pageProps} />
       <GlobalStyle />
-    </>
+    </ProviderSection>
   )
 }
-
-export default MyApp

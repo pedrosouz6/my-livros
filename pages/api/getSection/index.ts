@@ -25,7 +25,7 @@ export default (
             if(results.length <= 0) {
                 return res.send({
                     error: false,
-                    message: 'Esse usuário não tem nenhuma retornadas',
+                    message: 'Esse usuário não tem nenhuma seção retornadas',
                     results
                 })
             }

@@ -1,4 +1,9 @@
 import { FormEvent, useState } from 'react';
+import { destroyCookie } from 'nookies';
+
+import { TitleSection } from "../style";
+import { instance } from '../../../../config/axios';
+import { useSections } from '../../../../hooks/Sections';
 
 import { 
     ContainerModalAddSection,
@@ -6,15 +11,14 @@ import {
     FormModalButtonAdd
 } from "./style";
 
-import { TitleSection } from "../style";
-import { instance } from '../../../../config/axios';
-
 interface RespostTypes {
     error: true,
     message: string
 }
 
 export function MyBooksModalAddSections() {
+
+    const { handleLoopNoSection } = useSections();
 
     const [ nameSection, setNameSection ] = useState<string | null>(null);
  
@@ -31,6 +35,8 @@ export function MyBooksModalAddSections() {
                     return console.log(respost.message);
                 }
 
+                destroyCookie(null, 'no-section');
+                handleLoopNoSection();
                 return console.log(respost.message);
             })
         }
