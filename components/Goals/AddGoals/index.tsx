@@ -2,11 +2,11 @@ import {
     ContainerAddGoals, 
     DatesForm, 
     Date, 
-    NameInputGoal,
     ChooseGoals
 } from "./style";
 
 import { Title } from "../../../styles/style";
+import { Input } from "../../Input";
 
 export function GoalsAddGoals() {
     return (
@@ -15,7 +15,7 @@ export function GoalsAddGoals() {
                 Adicionar uma nova meta
             </Title>
             <form>
-                <NameInputGoal type="text" placeholder="Digite o nome da meta" required />
+                <Input type="text" placeholder="Digite o nome da meta" required />
 
                 <DatesForm>
                     <Date>

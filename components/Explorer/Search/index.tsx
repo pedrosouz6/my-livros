@@ -1,7 +1,7 @@
-import { InputSearch } from "./style";
+import { Input } from "../../Input"
 
 export function ExplorerSearch() {
     return (
-        <InputSearch type='text' placeholder="Pesquisar por livro" />
+        <Input placeholder="Pesquisar por livro" />
     )
 }

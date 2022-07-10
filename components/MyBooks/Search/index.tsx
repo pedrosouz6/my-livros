@@ -1,10 +1,11 @@
 import { User } from "../../User"
 import { Search, ContainerSearch } from "./style"
+import { Input } from '../../../components/Input';
 
 export function MyBooksSearch() {
     return (
         <ContainerSearch>
-            <Search placeholder="Pesquisar meus livros" />
+            <Input placeholder="Pesquisar meus livros" />
             <User />
         </ContainerSearch>
     )   

@@ -10,6 +10,7 @@ import {
 } from "./style";
 
 import { Container, Title } from '../../../styles/style';
+import { Input } from '../../Input';
 
 interface RespostTypes {
     error: true,
@@ -52,7 +53,7 @@ export function MyBooksAddSections() {
             <FormModalAddSection
             onSubmit={e => addSection(e)}>
 
-                <input 
+                <Input 
                 type="text" 
                 placeholder="Digite o nome da seção"
                 value={nameSection!}
