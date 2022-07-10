@@ -8,7 +8,6 @@ import { config } from '../config/jwt';
 import { Navbar } from '../components/Navbar';
 import { MyBooksSectionsCards } from '../components/MyBooks/Sections/Cards';
 import { MyBooksSearch } from '../components/MyBooks/Search';
-import { MyBooksSectionsFilter } from '../components/MyBooks/Sections/Filter';
 import { MyBooksSectionsInitial } from '../components/MyBooks/Sections/Initial';
 import { MyBooksSectionsNoSection } from '../components/MyBooks/Sections/NoSection';
 
@@ -50,7 +49,6 @@ export default function Home({ datas }: HomeProps) {
 
       <Container>
         <MyBooksSearch />
-        <MyBooksSectionsFilter />
         
         {
           isNoSection ? 

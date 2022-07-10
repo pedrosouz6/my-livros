@@ -10,6 +10,8 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import { BsBookHalf } from 'react-icons/bs';
 import { GiWorld } from 'react-icons/gi';
 import { GiStairsGoal } from 'react-icons/gi';
+import { BiBookAdd } from 'react-icons/bi';
+import { FaSwatchbook } from 'react-icons/fa';
 
 import { LinkA } from "../../styles/style";
 
@@ -57,6 +59,24 @@ export function Navbar() {
                             <LinkA className={pathname == '/goals' ? 'active' : ''}>
                                 <i><GiStairsGoal /></i>
                                 Metas
+                            </LinkA>
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link href="/add-section">
+                            <LinkA className={pathname == '/add-section' ? 'active' : ''}>
+                                <i><BiBookAdd /></i>
+                                Adicionar seção
+                            </LinkA>
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link href="/all-section">
+                            <LinkA className={pathname == '/all-section' ? 'active' : ''}>
+                                <i><FaSwatchbook /></i>
+                                Ver todas as seções
                             </LinkA>
                         </Link>
                     </li>

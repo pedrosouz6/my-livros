@@ -1,22 +1,22 @@
 import { FormEvent, useState } from 'react';
 import { destroyCookie } from 'nookies';
 
-import { TitleSection } from "../style";
-import { instance } from '../../../../config/axios';
-import { useSections } from '../../../../hooks/Sections';
+import { instance } from '../../../config/axios';
+import { useSections } from '../../../hooks/Sections';
 
 import { 
-    ContainerModalAddSection,
     FormModalAddSection,
     FormModalButtonAdd
 } from "./style";
+
+import { Container, Title } from '../../../styles/style';
 
 interface RespostTypes {
     error: true,
     message: string
 }
 
-export function MyBooksModalAddSections() {
+export function MyBooksAddSections() {
 
     const { handleLoopNoSection } = useSections();
 
@@ -46,8 +46,8 @@ export function MyBooksModalAddSections() {
     }
 
     return (
-        <ContainerModalAddSection>
-            <TitleSection>Adicionar uma nova seção</TitleSection>
+        <Container>
+            <Title>Adicionar uma nova seção</Title>
 
             <FormModalAddSection
             onSubmit={e => addSection(e)}>
@@ -63,6 +63,6 @@ export function MyBooksModalAddSections() {
                     Adicionar
                 </FormModalButtonAdd>
             </FormModalAddSection>
-        </ContainerModalAddSection>
+        </Container>
     )
 }
