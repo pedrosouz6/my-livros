@@ -1,9 +1,7 @@
-import { Title } from "../../../styles/style";
+import { Title } from "../../Title" 
 
 export function GoalsAllGoals() {
     return (
-        <Title>
-            Todas as metas
-        </Title>
+        <Title text='Todas as metas' />
     )
 }

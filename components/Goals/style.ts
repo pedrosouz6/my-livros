@@ -11,7 +11,7 @@ const {
 export const Choose = styled.div `
     border-bottom: 1px solid ${beige};
 
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 
     button {
         padding: 8px 15px;
