@@ -1,11 +1,12 @@
-import { Container, Title } from "../../../styles/style";
+import { Container } from "../../../styles/style";
 import { ContainerAllSection } from "./style";
+import { Title } from "../../Title";
 
 export function MyBooksAllSections() {
     return (
         <Container>
             <ContainerAllSection>
-                <Title>Todas as seções</Title>
+                <Title text="Todas as seções" />
 
             </ContainerAllSection>
         </Container>

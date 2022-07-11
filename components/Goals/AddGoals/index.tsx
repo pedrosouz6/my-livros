@@ -5,15 +5,13 @@ import {
     ChooseGoals
 } from "./style";
 
-import { Title } from "../../../styles/style";
+import { Title } from "../../Title";
 import { Input } from "../../Input";
 
 export function GoalsAddGoals() {
     return (
         <ContainerAddGoals>
-            <Title>
-                Adicionar uma nova meta
-            </Title>
+            <Title text='Adicionar uma nova meta' />
             <form>
                 <Input type="text" placeholder="Digite o nome da meta" required />
 

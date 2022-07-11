@@ -5,12 +5,13 @@ import { instance } from '../../../config/axios';
 import { useSections } from '../../../hooks/Sections';
 
 import { 
-    FormModalAddSection,
     FormModalButtonAdd
 } from "./style";
 
-import { Container, Title } from '../../../styles/style';
+import { Container } from '../../../styles/style';
 import { Input } from '../../Input';
+
+import { Title } from '../../Title';
 
 interface RespostTypes {
     error: true,
@@ -48,9 +49,9 @@ export function MyBooksAddSections() {
 
     return (
         <Container>
-            <Title>Adicionar uma nova seção</Title>
+            <Title text='Adicionar uma nova seção' />
 
-            <FormModalAddSection
+            <form
             onSubmit={e => addSection(e)}>
 
                 <Input 
@@ -63,7 +64,7 @@ export function MyBooksAddSections() {
                 type="submit">
                     Adicionar
                 </FormModalButtonAdd>
-            </FormModalAddSection>
+            </form>
         </Container>
     )
 }
