@@ -1,4 +1,4 @@
-import { Container, Title } from "../../styles/style";
+import { Container } from "../../styles/style";
 
 import { ExplorerSearch } from './Search';
 

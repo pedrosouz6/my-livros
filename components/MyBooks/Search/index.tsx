@@ -1,5 +1,5 @@
 import { User } from "../../User"
-import { Search, ContainerSearch } from "./style"
+import { ContainerSearch } from "./style"
 import { Input } from '../../../components/Input';
 
 export function MyBooksSearch() {
