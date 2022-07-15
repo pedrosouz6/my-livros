@@ -7,19 +7,8 @@ const {
     transition
 } = Theme.light;
 
-export const InputSearch = styled.input `
+export const ContainerSearch = styled.div `
     width: 100%;
-    height: 40px;
 
-    padding: 0 10px;
-    border-radius: 3px;
-    border: 1px solid ${beige};
-    outline: none;
-
-    transition: ${transition};
-
-    &:focus,
-    &:hover {
-        box-shadow: 0 0 5px rgba(0, 0, 0, .2);
-    }
+    background-color: white;
 `
