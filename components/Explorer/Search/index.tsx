@@ -21,7 +21,8 @@ export interface IitemsDatasBooks {
         },
         language: string
         pageCount: number,
-        industryIdentifiers: AlunosAprovados[]
+        industryIdentifiers: AlunosAprovados[],
+        publisher: string
     }
 }
 

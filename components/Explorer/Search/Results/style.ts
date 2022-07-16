@@ -48,9 +48,42 @@ export const CardsLeft = styled.div `
 
 export const CardsRight = styled.div `
     flex: 1;
-    background-color: aqua;
+`
+
+export const TitleBook = styled.h4 `
+    font-size: 17pt;
+`
+
+export const Authors = styled.div `
+    display: flex;
+    gap: 1rem;
 `
 
 export const AuthorName = styled.span `
-    display: block;
+    display: inline-block;
+    margin: .5rem 0 1rem 0;
+    color: #777;
 ` 
+
+export const PublishedDate = styled.span `
+    display: inline-block;
+    margin-right: 1rem;
+`
+
+export const Publisher = styled.span `
+    display: inline-block;
+`
+
+export const PageCount = styled.span `
+    display: block;
+    margin-top: .2rem;
+` 
+
+export const IndustryIdentifiers = styled.span `
+    display: inline-block;
+    margin: 1rem 1rem 0 0;
+`
+
+export const Description = styled.p `
+    margin-top: 1rem;
+`

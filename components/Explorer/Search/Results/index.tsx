@@ -4,12 +4,17 @@ import {
     Cards,
     CardsLeft,
     CardsRight,
-    AuthorName
+    TitleBook,
+    Authors,
+    AuthorName,
+    PublishedDate,
+    PageCount,
+    IndustryIdentifiers,
+    Description,
+    Publisher
 } from "./style";
 
 export function ExplorerSearchResults({ id, volumeInfo  }: IitemsDatasBooks) {
-
-    
 
     return (
         <Cards>
@@ -18,29 +23,48 @@ export function ExplorerSearchResults({ id, volumeInfo  }: IitemsDatasBooks) {
                 <button>Adicionar</button>
             </CardsLeft>
             <CardsRight>
-                <h4>{ volumeInfo.title }</h4>
+                <TitleBook>{ volumeInfo.title }</TitleBook>
 
-                { 
-                    volumeInfo.authors 
-                    ?
-                    volumeInfo.authors.map((item, key) => (
-                        <AuthorName key={key}>{ item }</AuthorName>
-                    )) 
-                    : 
-                    <AuthorName>Autor Desconhecido</AuthorName>
-                }
+                <Authors>
+                    { 
+                        volumeInfo.authors 
+                        ?
+                        volumeInfo.authors.map((item, key) => (
+                            <AuthorName key={key}>{ item }{ volumeInfo.authors.length === key + 1 ? '.' : ',' }</AuthorName>
+                        )) 
+                        : 
+                        <AuthorName>Autor Desconhecido</AuthorName>
+                    }
+                </Authors>
 
-                <span>{ volumeInfo.publishedDate }</span>
+                <PublishedDate>
+                    <strong>Publicado em:</strong> 
+                    { volumeInfo.publishedDate }
+                </PublishedDate>
 
-                <span>{ volumeInfo.pageCount }</span>
+                <Publisher>({ volumeInfo.publisher })</Publisher>
+
+                <PageCount><strong>Páginas:</strong> { volumeInfo.pageCount }</PageCount>
+
                 {
                     volumeInfo.industryIdentifiers &&
-                        volumeInfo.industryIdentifiers.map(item => (
-                            <span>{ item.type } - { item.identifier }</span>
-                        ))
+                    volumeInfo.industryIdentifiers.map(item => (
+                        <IndustryIdentifiers>
+                            <strong>{ item.type }: </strong> 
+                            { item.identifier }
+                        </IndustryIdentifiers>
+                    ))
                 }
 
-                <p>{ volumeInfo.description }</p>
+                <Description>
+                    { 
+                        volumeInfo.description ? 
+                        volumeInfo.description.length > 334 ? 
+                        volumeInfo.description.slice(0, 335)+'...' : 
+                        volumeInfo.description : 
+                        'Sem descrição'
+                    }
+                </Description>
 
             </CardsRight>
         </Cards>
