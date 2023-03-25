@@ -2,7 +2,6 @@ import { verify } from 'jsonwebtoken'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { parseCookies } from 'nookies'
-
 import { config } from '../config/jwt'
 
 import { MyBooksAllSections } from '../components/MyBooks/AllSection'
